@@ -36,6 +36,7 @@ class SerializeConverter extends BaseConverter
     private $_serializes = [
         'serialize' => ['serialize', 'unserialize'],
         'json' => ['json_encode', 'json_decode'],
+		'key_words' => ['serialize', 'unserialize'],
     ];
 
     /**
