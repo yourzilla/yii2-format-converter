@@ -36,7 +36,7 @@ class SerializeConverter extends BaseConverter
     private $_serializes = [
         'serialize' => ['serialize', 'unserialize'],
         'json' => ['json_encode', 'json_decode'],
-		'key_words' => ['serialize', 'unserialize'],
+        'key_words' => ['mdm\converter\SerializeConverter::key_words_serialize', 'unserialize'],
     ];
 
     /**
@@ -67,5 +67,14 @@ class SerializeConverter extends BaseConverter
         $params = $this->serializeParams;
         array_unshift($params, $value);
         return call_user_func_array($this->serialize[0], $params);
+    }
+    
+    static public function key_words_serialize($array){
+        $array = is_array($array)?$array:[];
+        $res = [];
+        foreach($array as $key => $value){
+            $res[$value] = $value;
+        }
+        return serialize($res);
     }
 }
